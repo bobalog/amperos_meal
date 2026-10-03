@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#eef9ff">
+<title>Amperos Meal Diary · 2026 October</title>
+<style>
+:root{
+  --ink:#49677d;--ink2:#6f8fa5;--sky:#dff4ff;--sky2:#c9ebff;
+  --sky3:#f2fbff;--cream:#fff8dd;--line:#d5eaf5;--white:#fff;
+}
+*{box-sizing:border-box}
+html{background:#f4fbff}
+body{
+  margin:0;color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR","Noto Sans JP",
+              "Apple SD Gothic Neo","Malgun Gothic",Arial,sans-serif;
+  background:
+    radial-gradient(circle at 14% 10%,#fff 0 3px,transparent 4px),
+    radial-gradient(circle at 84% 18%,#caecff 0 3px,transparent 4px),
+    linear-gradient(145deg,#fbfeff,#edf9ff);
+  min-height:100vh
+}
+button,input{font:inherit}
+.wrap{max-width:1080px;margin:auto;padding:28px 18px 70px}
+.hero{text-align:center;padding:30px 10px 22px}
+.spark{font-size:24px;letter-spacing:7px;color:#6aaed5;margin-bottom:10px}
+.hero h1{
+  margin:7px 0;font-family:inherit;font-size:clamp(34px,6vw,58px);
+  font-weight:900;letter-spacing:-2px;color:#5687a7
+}
+.hero p{margin:9px;color:#86a8bd;font-weight:650}
+.tabs{
+  display:flex;justify-content:center;gap:8px;flex-wrap:wrap;
+  position:sticky;top:8px;z-index:20;margin:8px 0 25px
+}
+button{
+  color:#63839a;border:1px solid #d5eaf5;background:#ffffffee;
+  border-radius:999px;padding:10px 16px;cursor:pointer;
+  box-shadow:0 4px 14px #5c98b817;transition:.18s ease
+}
+button:hover{transform:translateY(-2px);background:#f4fbff}
+button.active{background:linear-gradient(135deg,#dff4ff,#ccecff);font-weight:800;color:#4f7d9a}
+.panel{display:none}.panel.active{display:block}
+.today{
+  background:linear-gradient(135deg,#fff,#edf9ff);border:2px solid #fff;
+  border-radius:28px;padding:25px;box-shadow:0 16px 45px #527e9920;margin-bottom:24px
+}
+.todaytop{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.badge{display:inline-block;background:#d9f2ff;color:#5688a5;border-radius:999px;padding:7px 12px;font-size:12px;font-weight:800}
+.today h2{margin:10px 0 2px;color:#507d9a}
+.mealrow{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+.meal{padding:17px;border-radius:21px;line-height:1.65}
+.bf{background:#fff8df}.dn{background:#e9f7ff}.meal b{display:block;margin-bottom:5px}
+.calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:10px}
+.dow{text-align:center;font-size:12px;font-weight:800;color:#82a8bf;padding:5px}
+.day{
+  min-height:154px;background:#ffffffd9;border:1px solid var(--line);
+  border-radius:21px;padding:12px;box-shadow:0 7px 19px #4b829d0e;position:relative
+}
+.day.has{cursor:pointer;transition:.18s}.day.has:hover{transform:translateY(-3px);box-shadow:0 10px 24px #4f91b326}
+.day.todaycal{outline:3px solid #94d8ff;background:#f7fdff}
+.num{font-weight:800;font-size:18px;color:#5683a0}
+.mini{font-size:11px;line-height:1.45;margin-top:8px;padding:7px;border-radius:12px}
+.mini.bf{background:#fff9e8}.mini.dn{background:#edf8ff}
+.list{display:grid;gap:12px}
+.card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:17px;box-shadow:0 7px 20px #4c829c0d}
+.card h3{margin:0 0 12px;color:#5683a0}
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.photoCard{background:#fff;border-radius:26px;padding:15px;border:1px solid var(--line);box-shadow:0 12px 30px #4d829b1a;text-align:center}
+.photoCard img{width:100%;border-radius:18px;display:block}
+.note{font-size:12px;color:#87a5b8;margin-top:12px;line-height:1.6}
+.modal{
+  display:none;position:fixed;inset:0;background:#456d8560;backdrop-filter:blur(7px);
+  z-index:999;padding:20px;align-items:center;justify-content:center
+}
+.modal.show{display:flex}
+.modalbox{
+  position:relative;width:min(92vw,480px);background:linear-gradient(145deg,#fff,#edf9ff);
+  border:2px solid #fff;border-radius:30px;padding:28px;box-shadow:0 20px 70px #345d7640;text-align:center
+}
+.modalbox h2{color:#5683a0}.close{position:absolute;right:13px;top:12px;width:36px;height:36px;padding:0;background:#e4f5ff}
+.modalmeal{text-align:left;padding:14px 16px;border-radius:18px;margin:10px 0;line-height:1.65}
+.footer{text-align:center;margin-top:30px;color:#8daabd;font-size:12px}
+@media(max-width:760px){
+  .hero{padding-top:22px}.hero h1{font-size:38px;letter-spacing:-1.3px}.spark{letter-spacing:4px}
+  .calendar{grid-template-columns:repeat(2,1fr)}.dow{display:none}
+  .mealrow,.twocol{grid-template-columns:1fr}.day{min-height:135px}
+}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <section class="hero">
+    <div class="spark">✦ ★ ✦</div>
+    <h1>Amperos Meal Diary</h1>
+    <p>アンペロス寮 · 2026년 10월 전반 식단 · ♡</p>
+  </section>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="home">오늘의 식단</button>
+    <button class="tab" data-tab="calendar">월간 달력</button>
+    <button class="tab" data-tab="list">식단 쭈르르</button>
+    <button class="tab" data-tab="photo">원본 사진</button>
+  </nav>
+
+  <section id="home" class="panel active">
+    <div class="today" id="todayBox"></div>
+    <div class="note">✦ 게시된 원본표는 10월 1일~16일까지입니다. 17일 이후는 후반 식단표가 나오면 추가할 수 있어요.</div>
+  </section>
+
+  <section id="calendar" class="panel"><div class="calendar" id="cal"></div></section>
+  <section id="list" class="panel"><div class="list" id="mealList"></div></section>
+
+  <section id="photo" class="panel">
+    <div class="photoCard">
+      <img src="october_menu_original.jpg" alt="アンペロス寮 2026年10月前半メニュー原本">
+      <p class="note">기숙사 게시판의 10월 전반 원본 식단표입니다. 번역이 헷갈릴 때 사진과 대조할 수 있어요.</p>
+    </div>
+  </section>
+
+  <div class="footer">✦ 오늘도 맛있게 먹기 ♡ ✦</div>
+</main>
+
+<div class="modal" id="modal">
+  <div class="modalbox">
+    <button class="close" id="close" aria-label="닫기">×</button>
+    <div class="spark">✦ ★ ✦</div>
+    <h2 id="mt"></h2>
+    <div id="mb"></div>
+    <div class="note">오늘도 맛있게 먹기 ♡</div>
+  </div>
+</div>
+
+<script>
+const menus=[
+{"day": 1, "jp": ["温泉玉子 / 野菜サラダ", "唐揚げ / フライドポテト / 小芋そぼろ煮"], "ko": ["온천계란 / 채소샐러드", "닭튀김 / 감자튀김 / 작은 감자 다짐고기 조림"]},
+{"day": 2, "jp": ["トマトソースハンバーグ / 野菜サラダ", "かつとじ / ツナコーンサラダ / 冷やしソーメン"], "ko": ["토마토소스 함박스테이크 / 채소샐러드", "돈가스 달걀조림 / 참치콘샐러드 / 냉소면"]},
+{"day": 3, "jp": ["目玉焼き / 野菜サラダ / （食パン）", "クリームシチュー / さつま芋とビーフンサラダ / 栗かぼちゃコロッケ"], "ko": ["계란프라이 / 채소샐러드 / 식빵", "크림스튜 / 고구마·비픈샐러드 / 단호박 고로케"]},
+{"day": 4, "jp": ["アスパラとコーンソテー / 野菜サラダ", "チキントマトクリーム煮 / 春雨サラダ / 椎茸の海老肉詰めフライ"], "ko": ["아스파라거스·콘 볶음 / 채소샐러드", "치킨 토마토크림조림 / 당면샐러드 / 표고버섯 새우고기튀김"]},
+{"day": 5, "jp": ["鯖の酢醤油焼き / 野菜サラダ", "カレーライス / 野菜サラダ / キャベツメンチカツ"], "ko": ["고등어 초간장구이 / 채소샐러드", "카레라이스 / 채소샐러드 / 양배추 멘치카츠"]},
+{"day": 6, "jp": ["牛かつ / 野菜サラダ", "鶏とじゃが芋の韓国風味噌煮 / 五目金平 / スパサラ"], "ko": ["소고기카츠 / 채소샐러드", "닭고기·감자 한국풍 된장조림 / 오목 긴피라 / 스파게티샐러드"]},
+{"day": 7, "jp": ["スクランブルエッグ / 野菜サラダ / （食パン）", "餡かけ焼きそば / ナムル / 春巻き"], "ko": ["스크램블에그 / 채소샐러드 / 식빵", "앙카케 야키소바 / 나물 / 춘권"]},
+{"day": 8, "jp": ["キムチ湯豆腐 / 野菜サラダ", "チキン南蛮 / マカロニサラダ / 大根と揚げ蒲の煮物"], "ko": ["김치 온두부 / 채소샐러드", "치킨난반 / 마카로니샐러드 / 무·어묵조림"]},
+{"day": 9, "jp": ["ペンネトマトソース / 野菜サラダ", "タコライス / レタスサラダと目玉焼き / 旨トマフライ"], "ko": ["펜네 토마토소스 / 채소샐러드", "타코라이스 / 양상추샐러드·계란프라이 / 토마토튀김"]},
+{"day": 10, "jp": ["ハムカツ / 野菜サラダ / （食パン）", "チキンのレモンペッパー焼 / スパソテー / フィッシュカツ"], "ko": ["햄카츠 / 채소샐러드 / 식빵", "치킨 레몬페퍼구이 / 스파게티볶음 / 피시카츠"]},
+{"day": 11, "jp": ["あじの天ぷら / 野菜サラダ", "お魚の野菜あんかけ / 肉じゃが / ミニ焼売"], "ko": ["전갱이 튀김 / 채소샐러드", "생선 채소앙카케 / 니쿠자가 / 미니슈마이"]},
+{"day": 12, "jp": ["ミートボール / 野菜サラダ", "塩だれ唐揚げ / 焼きビーフン / 野菜サラダ"], "ko": ["미트볼 / 채소샐러드", "소금소스 닭튀김 / 야키비픈 / 채소샐러드"]},
+{"day": 13, "jp": ["カレールーフライ / 野菜サラダ", "ひれかつ / 炒り卵 / ブロッコリーツナサラダ"], "ko": ["카레루 튀김 / 채소샐러드", "히레카츠 / 볶은계란 / 브로콜리참치샐러드"]},
+{"day": 14, "jp": ["ポトフ / 野菜サラダ / （食パン）", "ガリバタチキン / ジャーマンポテト / 野菜炒め"], "ko": ["포토푀 / 채소샐러드 / 식빵", "갈릭버터치킨 / 저먼포테이토 / 채소볶음"]},
+{"day": 15, "jp": ["揚げ出し豆腐 / 野菜サラダ", "ハンバーグ / ナポリタン / ポテトサラダ"], "ko": ["아게다시도후 / 채소샐러드", "함박스테이크 / 나폴리탄 / 감자샐러드"]},
+{"day": 16, "jp": ["白身魚のバター焼き / 野菜サラダ", "豚キムチ / 蓮根と蒸し鶏の塩酢マヨ / 白身フライ"], "ko": ["흰살생선 버터구이 / 채소샐러드", "돼지고기김치볶음 / 연근·찐닭 소금식초마요 / 흰살생선튀김"]}
+];
+
+const weekday=["일","월","화","수","목","금","토"];
+const byDay=d=>menus.find(x=>x.day===d);
+
+function foodify(t){
+  const rules=[
+    [/닭|치킨|唐揚|チキン/g,"🍗"],
+    [/생선|고등어|전갱이|魚|鯖|あじ/g,"🐟"],
+    [/카레|カレー/g,"🍛"],
+    [/함박|고기|카츠|ハンバーグ|かつ|カツ/g,"🥩"],
+    [/계란|玉子|エッグ|卵/g,"🍳"],
+    [/빵|パン/g,"🍞"],
+    [/샐러드|サラダ|채소/g,"🥗"],
+    [/면|소바|비픈|스파게티|そば|ビーフン|スパ|ナポリタン/g,"🍜"],
+    [/두부|豆腐/g,"🍲"],
+    [/감자|ポテト|じゃが/g,"🥔"]
+  ];
+  let icons=[];
+  for(const [r,e] of rules){
+    if(r.test(t)) icons.push(e);
+    r.lastIndex=0;
+    if(icons.length===2) break;
+  }
+  return (icons.join("")||"🍽️")+" "+t;
+}
+
+function mealHTML(m,lang="ko"){
+  const x=lang==="ko"?m.ko:m.jp;
+  return `<div class="mealrow">
+    <div class="meal bf"><b>🌅 아침</b>${foodify(x[0])}</div>
+    <div class="meal dn"><b>🌙 저녁</b>${foodify(x[1])}</div>
+  </div>`;
+}
+
+function renderToday(){
+  const now=new Date();
+  const isOct=now.getFullYear()===2026 && now.getMonth()===9;
+  const d=now.getDate();
+  const m=isOct?byDay(d):null;
+  const title=isOct?`10월 ${d}일 (${weekday[now.getDay()]})`:"2026년 10월 식단";
+
+  document.querySelector("#todayBox").innerHTML=
+    `<div class="todaytop">
+      <div><div class="badge">TODAY ✦</div><h2>${title}</h2></div>
+      <div style="font-size:38px">🍚</div>
+    </div>`+
+    (m
+      ? mealHTML(m)
+      : `<div class="meal dn" style="margin-top:18px">
+          ${isOct&&d>16?"후반 식단은 아직 원본표에 없어요.":"10월 1~16일 중 날짜를 달력에서 눌러 확인해 주세요."}
+        </div>`);
+}
+
+function renderCal(){
+  const cal=document.querySelector("#cal");
+  ["일","월","화","수","목","금","토"].forEach(x=>{
+    cal.innerHTML+=`<div class="dow">${x}</div>`;
+  });
+
+  const first=new Date(2026,9,1).getDay();
+  for(let i=0;i<first;i++) cal.innerHTML+=`<div></div>`;
+
+  for(let d=1;d<=31;d++){
+    const m=byDay(d);
+    const today=new Date();
+    const isToday=today.getFullYear()===2026 && today.getMonth()===9 && today.getDate()===d;
+
+    cal.innerHTML+=`
+      <div class="day ${m?"has":""} ${isToday?"todaycal":""}" ${m?`data-day="${d}"`:""}>
+        <div class="num">${d} ${m?"✦":""}</div>
+        ${
+          m
+          ? `<div class="mini bf">🌅 ${foodify(m.ko[0])}</div>
+             <div class="mini dn">🌙 ${foodify(m.ko[1])}</div>`
+          : `<div class="note">${d>16?"후반 업데이트 예정":"식단 없음"}</div>`
+        }
+      </div>`;
+  }
+
+  document.querySelectorAll(".day.has").forEach(el=>{
+    el.addEventListener("click",()=>openMeal(Number(el.dataset.day)));
+  });
+}
+
+function renderList(){
+  document.querySelector("#mealList").innerHTML=menus.map(m=>`
+    <article class="card">
+      <h3>✦ 10월 ${m.day}일 (${weekday[new Date(2026,9,m.day).getDay()]})</h3>
+      <div class="twocol">
+        <div class="meal bf">
+          <b>🌅 아침</b>${foodify(m.ko[0])}
+          <div class="note">${m.jp[0]}</div>
+        </div>
+        <div class="meal dn">
+          <b>🌙 저녁</b>${foodify(m.ko[1])}
+          <div class="note">${m.jp[1]}</div>
+        </div>
+      </div>
+    </article>
+  `).join("");
+}
+
+function openMeal(d){
+  const m=byDay(d);
+  if(!m) return;
+  document.querySelector("#mt").textContent=
+    `10월 ${d}일 (${weekday[new Date(2026,9,d).getDay()]}) 식단 ✦`;
+  document.querySelector("#mb").innerHTML=
+    mealHTML(m)+
+    `<div class="note">🇯🇵 아침: ${m.jp[0]}<br>🇯🇵 저녁: ${m.jp[1]}</div>`;
+  document.querySelector("#modal").classList.add("show");
+}
+
+document.querySelector("#close").addEventListener("click",()=>{
+  document.querySelector("#modal").classList.remove("show");
+});
+document.querySelector("#modal").addEventListener("click",e=>{
+  if(e.target===e.currentTarget) e.currentTarget.classList.remove("show");
+});
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape") document.querySelector("#modal").classList.remove("show");
+});
+
+document.querySelectorAll(".tab").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
+    document.querySelectorAll(".panel").forEach(x=>x.classList.remove("active"));
+    btn.classList.add("active");
+    document.querySelector("#"+btn.dataset.tab).classList.add("active");
+  });
+});
+
+renderToday();
+renderCal();
+renderList();
+</script>
+</body>
+</html>
